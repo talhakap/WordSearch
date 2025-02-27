@@ -1,0 +1,329 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #1b012e;
+    color: #fcfcfc;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1b012e;
+    z-index: -1;
+}
+
+.menu {
+    text-align: center;
+    margin: 20px;
+    padding: 30px;
+    background: linear-gradient(to bottom, #5d356e, #c23ac9);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fcfcfc;
+}
+
+.menu button {
+    margin: 15px auto;
+    padding: 12px 25px;
+    background: #c23ac9;
+    color: #fcfcfc;
+    border: 2px solid #5d356e;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.menu button:hover {
+    background: #5d356e;
+    transform: scale(1.1);
+}
+
+.word-search-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    text-align: center;
+    margin: 20px;
+    padding: 30px;
+    background: linear-gradient(to bottom, #5d356e, #c23ac9);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fcfcfc;
+}
+
+.word-search-menu button {
+    margin: 12px 0;
+    padding: 12px 25px;
+    background: #c23ac9;
+    color: #fcfcfc;
+    border: 2px solid #5d356e;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.word-search-menu button:hover {
+    background: #5d356e;
+    transform: scale(1.1);
+}
+
+.word-search-menu button {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.word-search-game {
+    display: none;
+    text-align: center;
+    margin: 20px;
+    padding: 30px;
+    background: linear-gradient(to bottom, #5d356e, #c23ac9);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fcfcfc;
+}
+
+.word-grid {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px;
+    border: 3px solid #5d356e;
+    border-radius: 10px;
+    background: #fcfcfc;
+    max-width: 90%;
+    overflow-x: auto;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.row span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    background: #5d356e;
+    border-radius: 5px;
+    color: #fcfcfc;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.row span:hover {
+    background: #c23ac9;
+    transform: scale(1.1);
+}
+
+.row span.selected {
+    background: #c23ac9;
+    color: #fcfcfc;
+}
+
+.row span.found {
+    background: #8fd694;
+    color: #1b012e;
+    animation: highlightFlash 0.6s ease-in-out;
+}
+
+.row span.found-letter {
+    background: #8fd694; /* Background color for found letters */
+    color: #1b012e; /* Text color for found letters */
+}
+
+/* Ensure found letters can still be hovered and selected */
+.row span.found-letter:hover {
+    background: #c23ac9;
+    transform: scale(1.1);
+}
+
+.row span.found-letter.selected {
+    background: #c23ac9;
+    color: #fcfcfc;
+}
+
+@keyframes highlightFlash {
+    from {
+        background-color: yellow;
+    }
+    to {
+        background-color: #8fd694;
+    }
+}
+
+ul#wordList {
+    text-align: left;
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 300px;
+    background: #fcfcfc;
+    border: 2px solid #5d356e;
+    border-radius: 10px;
+    color: #1b012e;
+}
+
+ul#wordList li {
+    font-size: 18px;
+    line-height: 1.8;
+    list-style: none;
+}
+
+ul#wordList li.found {
+    text-decoration: line-through;
+    color: #c23ac9;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 25px;
+    background: #c23ac9;
+    color: #fcfcfc;
+    border: 2px solid #5d356e;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+button:hover {
+    background: #5d356e;
+    transform: scale(1.1);
+}
+
+#completionMessage {
+    margin-top: 20px;
+    padding: 30px;
+    background: #fcfcfc;
+    border: 2px solid #c23ac9;
+    border-radius: 15px;
+    color: #1b012e;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#completionMessage button {
+    background: #c23ac9;
+    color: #fcfcfc;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+#completionMessage button:hover {
+    background: #5d356e;
+    transform: scale(1.1);
+}
+
+
+
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.pop-in {
+    animation: popIn 0.5s ease-in-out;
+}
+
+.slide-in {
+    animation: slideIn 1s ease-in-out;
+}
+
+.zoom-out {
+    animation: zoomOut 0.8s ease-in-out forwards;
+}
+
+.highlight {
+    animation: highlightFlash 0.6s ease-in-out;
+}
+
+#submitButton {
+    margin: 20px auto;
+    padding: 12px 25px;
+    background: #c23ac9;
+    color: #fcfcfc;
+    border: 2px solid #5d356e;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+#submitButton:hover {
+    background: #5d356e;
+    transform: scale(1.1);
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+}
+
+@keyframes highlightFlash {
+    from {
+        background-color: yellow;
+    }
+    to {
+        background-color: #8fd694;
+    }
+}
